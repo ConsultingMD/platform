@@ -43,6 +43,11 @@ type SSOSetting struct {
 	UserApiEndpoint string
 }
 
+type SSOSettings struct {
+	AllowEmailSignUp bool
+	Services         map[string]SSOSetting
+}
+
 type SqlSettings struct {
 	DriverName         string
 	DataSource         string
@@ -131,7 +136,7 @@ type Config struct {
 	RateLimitSettings RateLimitSettings
 	PrivacySettings   PrivacySettings
 	TeamSettings      TeamSettings
-	SSOSettings       map[string]SSOSetting
+	SSOSettings       SSOSettings
 }
 
 func (o *Config) ToJson() string {
@@ -269,10 +274,14 @@ func IsS3Configured() bool {
 
 func GetAllowedAuthServices() []string {
 	authServices := []string{}
-	for name, service := range Cfg.SSOSettings {
+	for name, service := range Cfg.SSOSettings.Services {
 		if service.Allow {
 			authServices = append(authServices, name)
 		}
+	}
+
+	if Cfg.SSOSettings.AllowEmailSignUp {
+		authServices = append(authServices, "email")
 	}
 
 	return authServices

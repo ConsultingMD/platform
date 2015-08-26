@@ -203,6 +203,23 @@
                     display: inline-block;
                 }
             }
+            &.email {
+                background: #2389D7;
+                &:hover {
+                    background: darken(#2389D7, 10%);
+                }
+                span {
+                    vertical-align: middle;
+                }
+                .icon {
+                    background: url("../images/gitlabLogo.png");
+                    width: 18px;
+                    height: 18px;
+                    margin-right: 8px;
+                    @include background-size(100% 100%);
+                    display: inline-block;
+                }
+            }
         }
         &.btn-default {
             color: #444;
