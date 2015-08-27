@@ -20,7 +20,7 @@
         "PublicLinkSalt": "TO3pTyXIZzwHiwyZgGql7lM7DG3zeId4",
         "ResetSalt": "IPxFzSfnDFsNsRafZxz8NaYqFKhf9y2t",
         "AnalyticsUrl": "",
-        "UseLocalStorage": true,
+        "UseLocalStorage": false,
         "StorageDirectory": "/mattermost/data/",
         "AllowedLoginAttempts": 10
     },
@@ -59,7 +59,7 @@
         "InitialFont": "luximbi.ttf"
     },
     "EmailSettings": {
-        "ByPassEmail" : true,
+        "ByPassEmail" : false,
         "SMTPUsername": "${SMTP_USERNAME}",
         "SMTPPassword": "${SMTP_PASSWORD}",
         "SMTPServer": "${SMTP_SERVER}",
