@@ -7,8 +7,10 @@ mkdir -p web/static/js
 echo "127.0.0.1 dockerhost" >> /etc/hosts
 /etc/init.d/networking restart
 
+env
+
 # evaluate env vars into our config
-perl -p -e 's/\$\{([^}]+)\}/defined $ENV{$1} ? $ENV{$1} : $&/eg' < /config_docker.json > /config_grnds.json
+perl -p -e 's/\$\{([^}]+)\}/defined $ENV{$1} ? $ENV{$1} : "not_found"/eg' < /config_docker.json > /config_grnds.json
 
 echo starting platform
 cd /mattermost/bin

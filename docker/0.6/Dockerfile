@@ -6,11 +6,6 @@ FROM ubuntu:14.04
 # Install SQL
 #
 
-ENV MYSQL_ROOT_PASSWORD=mostest
-ENV MYSQL_USER=mmuser
-ENV MYSQL_PASSWORD=mostest
-ENV MYSQL_DATABASE=mattermost_test
-
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
 RUN apt-get update && apt-get install -y perl --no-install-recommends && rm -rf /var/lib/apt/lists/*
@@ -22,11 +17,7 @@ ENV MYSQL_VERSION 5.6.25
 
 RUN echo "deb http://repo.mysql.com/apt/debian/ wheezy mysql-${MYSQL_MAJOR}" > /etc/apt/sources.list.d/mysql.list
 
-RUN apt-get update \
-	&& export DEBIAN_FRONTEND=noninteractive \
-	&& apt-get -y install mysql-server \
-	&& rm -rf /var/lib/apt/lists/* \
-	&& rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql
+RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get -y install mysql-client
 
 # ---------------------------------------------------------------------------------------------------------------------
 

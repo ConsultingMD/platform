@@ -3,7 +3,7 @@
         "ConsoleEnable": false,
         "ConsoleLevel": "DEBUG",
         "FileEnable": true,
-        "FileLevel": "INFO",
+        "FileLevel": "DEBUG",
         "FileFormat": "",
         "FileLocation": ""
     },
@@ -36,18 +36,18 @@
     },
     "SqlSettings": {
         "DriverName": "mysql",
-        "DataSource": "${RDS_USERNAME}:${RDS_PASSWORD}@tcp(${RDS_HOSTNAME}:3306)/${RDS_DATABASE}?charset=utf8mb4,utf8",
-        "DataSourceReplicas": ["${RDS_USERNAME}:${RDS_PASSWORD}@tcp(${RDS_HOSTNAME}:3306)/${RDS_DATABASE}?charset=utf8mb4,utf8"],
+        "DataSource": "${RDS_USERNAME}:${RDS_PASSWORD}@tcp(${RDS_HOSTNAME}:3306)/${RDS_DB_NAME}?charset=utf8mb4,utf8",
+        "DataSourceReplicas": ["${RDS_USERNAME}:${RDS_PASSWORD}@tcp(${RDS_HOSTNAME}:3306)/${RDS_DB_NAME}?charset=utf8mb4,utf8"],
         "MaxIdleConns": 10,
         "MaxOpenConns": 10,
         "Trace": false,
         "AtRestEncryptKey": "Ya0xMrybACJ3sZZVWQC7e31h5nSDWZFS"
     },
     "AWSSettings": {
-        "S3AccessKeyId": "",
-        "S3SecretAccessKey": "",
-        "S3Bucket": "",
-        "S3Region": ""
+        "S3AccessKeyId": "${S3_ACCESS_KEY_ID}",
+        "S3SecretAccessKey": "${S3_SECRET_ACCESS_KEY}",
+        "S3Bucket": "${S3_BUCKET}",
+        "S3Region": "${S3_REGION}"
     },
     "ImageSettings": {
         "ThumbnailWidth": 120,
@@ -65,8 +65,8 @@
         "SMTPServer": "${SMTP_SERVER}",
         "UseTLS": false,
         "UseStartTLS": false,
-        "FeedbackEmail": "",
-        "FeedbackName": "",
+        "FeedbackEmail": "ops@grandrounds.com",
+        "FeedbackName": "Site Operations",
         "ApplePushServer": "",
         "ApplePushCertPublic": "",
         "ApplePushCertPrivate": ""
