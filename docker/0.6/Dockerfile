@@ -28,9 +28,6 @@ RUN apt-get update \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& rm -rf /var/lib/mysql && mkdir -p /var/lib/mysql
 
-RUN sed -Ei 's/^(bind-address|log)/#&/' /etc/mysql/my.cnf
-
-VOLUME /var/lib/mysql
 # ---------------------------------------------------------------------------------------------------------------------
 
 WORKDIR /mattermost
