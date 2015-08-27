@@ -59,7 +59,7 @@
         "InitialFont": "luximbi.ttf"
     },
     "EmailSettings": {
-        "ByPassEmail" : false,
+        "ByPassEmail" : true,
         "SMTPUsername": "${SMTP_USERNAME}",
         "SMTPPassword": "${SMTP_PASSWORD}",
         "SMTPServer": "${SMTP_SERVER}",
