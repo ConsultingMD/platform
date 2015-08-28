@@ -7,6 +7,7 @@ FROM ubuntu:14.04
 #
 
 RUN groupadd -r mysql && useradd -r -g mysql mysql
+RUN apt-get openssl curl emacs24-nox
 RUN apt-get update && apt-get install -y perl curl --no-install-recommends && rm -rf /var/lib/apt/lists/*
 RUN apt-key adv --keyserver pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
 ENV MYSQL_MAJOR 5.6
