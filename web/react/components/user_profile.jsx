@@ -51,7 +51,7 @@ module.exports = React.createClass({
         return getStateFromStores(this.props.userId);
     },
     render: function() {
-        var name = this.props.overwriteName ? this.props.overwriteName : this.state.profile.username;
+        var name = utils.getDisplayName(this.state.profile);
 
 
         var data_content = "<img class='user-popover__image' src='/api/v1/users/" + this.state.profile.id + "/image?time=" + this.state.profile.update_at + "' height='128' width='128' />";
