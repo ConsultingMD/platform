@@ -11,7 +11,7 @@
         "SiteName": "Mattermost",
         "Mode" : "prod",
 		"AllowTesting" : false,
-        "UseSSL": false,
+        "UseSSL": true,
         "Port": "80",
         "Version": "developer",
         "Shards": {
