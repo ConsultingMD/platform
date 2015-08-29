@@ -18,7 +18,7 @@ RUN apt-get update && export DEBIAN_FRONTEND=noninteractive && apt-get -y instal
 WORKDIR /mattermost
 
 # Copy over files
-ADD https://github.com/mattermost/platform/releases/download/v0.6.0/mattermost.tar.gz /
+ADD ../../dist/mattermost.tar.gz /
 RUN tar -zxvf /mattermost.tar.gz --strip-components=1
 ADD config_docker.json /
 ADD docker-entry.sh /
