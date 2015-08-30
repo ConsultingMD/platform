@@ -46,8 +46,8 @@ function getStateFromStores() {
         var channel = ChannelStore.getByName(channelName);
 
         if (channel != null) {
-            channel.display_name = teammate.username;
-            channel.teammate_username = teammate.username;
+            channel.display_name = utils.getDisplayName(teammate);
+            channel.teammate_username = utils.getDisplayName(teammate);
 
             channel.status = UserStore.getStatus(teammate.id);
 

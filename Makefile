@@ -245,6 +245,9 @@ dist: install
 
 	tar -C dist -czf $(DIST_PATH).tar.gz mattermost
 
+	cp dist/mattermost.tar.gz docker/0.6
+	cd docker/0.6 && docker build --tag=grnds/mattermost:latest . && docker push grnds/mattermost
+
 docker-build: stop
 	docker build -t ${DOCKERNAME} -f docker/local/Dockerfile .
 
