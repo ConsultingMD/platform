@@ -435,6 +435,12 @@ module.exports = React.createClass({
         head.appendChild(link);
 
         var directMessageMore = null;
+        var currentUser = UserStore.getCurrentUser();
+        var isAdmin = false;
+        var addChannel = '';
+        if (currentUser != null) {
+            isAdmin = currentUser.roles.indexOf('admin') > -1;
+        }
         if (this.state.hideDirectChannels.length > 0) {
             directMessageMore = (
                 <li>
@@ -445,6 +451,9 @@ module.exports = React.createClass({
             );
         }
 
+        if (isAdmin) {
+            addChannel = (<li><h4>Channels<a className='add-channel-btn' href='#' data-toggle='modal' data-target='#new_channel' data-channeltype='O'>+</a></h4></li>);
+        }
         return (
             <div>
                 <SidebarHeader teamDisplayName={this.props.teamDisplayName} teamType={this.props.teamType} />
@@ -455,7 +464,7 @@ module.exports = React.createClass({
 
                 <div ref='container' className='nav-pills__container' onScroll={this.onScroll}>
                     <ul className='nav nav-pills nav-stacked'>
-                        <li><h4>Channels<a className='add-channel-btn' href='#' data-toggle='modal' data-target='#new_channel' data-channeltype='O'>+</a></h4></li>
+                        {addChannel}
                         {channelItems}
                         <li><a href='#' data-toggle='modal' className='nav-more' data-target='#more_channels' data-channeltype='O'>More...</a></li>
                     </ul>

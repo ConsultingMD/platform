@@ -1,10 +1,11 @@
 // Copyright (c) 2015 Spinpunch, Inc. All Rights Reserved.
 // See License.txt for license information.
 var UserStore = require("../stores/user_store.jsx");
+var Utils = require('../utils/utils.jsx');
 
 module.exports = React.createClass({
     handleClick: function() {
-        this.props.handleClick(this.props.username);
+        this.props.handleClick(Utils.getDisplayName(this.props));
     },
     getInitialState: function() {
         return null;

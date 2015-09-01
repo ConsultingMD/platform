@@ -176,7 +176,7 @@ func (u *User) SetDefaultNotifications() {
 	u.NotifyProps["email"] = "true"
 	u.NotifyProps["desktop"] = USER_NOTIFY_ALL
 	u.NotifyProps["desktop_sound"] = "true"
-	u.NotifyProps["mention_keys"] = u.Username + ",@" + u.Username
+	u.NotifyProps["mention_keys"] = u.FirstName + ",@" + u.FirstName
 	u.NotifyProps["first_name"] = "false"
 	u.NotifyProps["all"] = "true"
 	u.NotifyProps["channel"] = "true"

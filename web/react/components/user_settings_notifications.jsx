@@ -46,7 +46,7 @@ function getNotificationsStateFromStores() {
 
             if (keys.indexOf('@' + user.username) !== -1) {
                 mentionKey = true;
-                keys.splice(keys.indexOf('@' + user.username), 1);
+                keys.splice(keys.indexOf('@' + utils.getDisplayName(user)), 1);
             } else {
                 mentionKey = false;
             }
@@ -100,10 +100,10 @@ export default class NotificationsTab extends React.Component {
 
         var mentionKeys = [];
         if (this.state.usernameKey) {
-            mentionKeys.push(this.props.user.username);
+            mentionKeys.push(utils.getDisplayName(this.props.user));
         }
         if (this.state.mentionKey) {
-            mentionKeys.push('@' + this.props.user.username);
+            mentionKeys.push('@' + utils.getDisplayName(this.props.user));
         }
 
         var stringKeys = mentionKeys.join(',');
@@ -604,10 +604,10 @@ export default class NotificationsTab extends React.Component {
                 keys.push(user.first_name);
             }
             if (this.state.usernameKey) {
-                keys.push(user.username);
+                keys.push(utils.getDisplayName(user));
             }
             if (this.state.mentionKey) {
-                keys.push('@' + user.username);
+                keys.push('@' + utils.getDisplayName(user));
             }
             if (this.state.allKey) {
                 keys.push('@all');

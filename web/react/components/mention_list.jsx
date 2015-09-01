@@ -195,7 +195,7 @@ module.exports = React.createClass({
                 mentions[index] = (
                     <Mention
                         ref={'mention' + index}
-                        username={users[i].username}
+                        username={Utils.getDisplayName(users[i])}
                         secondary_text={Utils.getFullName(users[i])}
                         id={users[i].id}
                         listId={index}
