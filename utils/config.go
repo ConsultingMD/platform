@@ -31,6 +31,7 @@ type ServiceSettings struct {
 	UseLocalStorage      bool
 	StorageDirectory     string
 	AllowedLoginAttempts int
+	DisableEmailSignUp   bool
 }
 
 type SSOSetting struct {
@@ -109,16 +110,18 @@ type PrivacySettings struct {
 }
 
 type TeamSettings struct {
-	MaxUsersPerTeam   int
-	AllowPublicLink   bool
-	AllowValetDefault bool
-	TermsLink         string
-	PrivacyLink       string
-	AboutLink         string
-	HelpLink          string
-	ReportProblemLink string
-	TourLink          string
-	DefaultThemeColor string
+	MaxUsersPerTeam           int
+	AllowPublicLink           bool
+	AllowValetDefault         bool
+	TermsLink                 string
+	PrivacyLink               string
+	AboutLink                 string
+	HelpLink                  string
+	ReportProblemLink         string
+	TourLink                  string
+	DefaultThemeColor         string
+	DisableTeamCreation       bool
+	RestrictCreationToDomains string
 }
 
 type Config struct {
@@ -275,5 +278,23 @@ func GetAllowedAuthServices() []string {
 		}
 	}
 
+	if !Cfg.ServiceSettings.DisableEmailSignUp {
+		authServices = append(authServices, "email")
+	}
+
 	return authServices
+}
+
+func IsServiceAllowed(s string) bool {
+	if len(s) == 0 {
+		return false
+	}
+
+	if service, ok := Cfg.SSOSettings[s]; ok {
+		if service.Allow {
+			return true
+		}
+	}
+
+	return false
 }

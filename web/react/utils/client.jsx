@@ -70,6 +70,21 @@ module.exports.createTeamFromSignup = function(teamSignup, success, error) {
     });
 };
 
+module.exports.createTeamWithSSO = function(team, service, success, error) {
+    $.ajax({
+        url: '/api/v1/teams/create_with_sso/' + service,
+        dataType: 'json',
+        contentType: 'application/json',
+        type: 'POST',
+        data: JSON.stringify(team),
+        success: success,
+        error: function onError(xhr, status, err) {
+            var e = handleError('createTeamWithSSO', xhr, status, err);
+            error(e);
+        }
+    });
+};
+
 module.exports.createUser = function(user, data, emailHash, success, error) {
     $.ajax({
         url: '/api/v1/users/create?d=' + encodeURIComponent(data) + '&h=' + encodeURIComponent(emailHash),
@@ -653,10 +668,25 @@ module.exports.executeCommand = function(channelId, command, suggest, success, e
     });
 };
 
-module.exports.getPosts = function(channelId, offset, limit, success, error, complete) {
+module.exports.getPostsPage = function(channelId, offset, limit, success, error, complete) {
     $.ajax({
         cache: false,
         url: '/api/v1/channels/' + channelId + '/posts/' + offset + '/' + limit,
+        dataType: 'json',
+        type: 'GET',
+        ifModified: true,
+        success: success,
+        error: function onError(xhr, status, err) {
+            var e = handleError('getPosts', xhr, status, err);
+            error(e);
+        },
+        complete: complete
+    });
+};
+
+module.exports.getPosts = function(channelId, since, success, error, complete) {
+    $.ajax({
+        url: '/api/v1/channels/' + channelId + '/posts/' + since,
         dataType: 'json',
         type: 'GET',
         ifModified: true,

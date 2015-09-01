@@ -64,7 +64,8 @@ function getStateFromStores() {
             var tempChannel = {};
             tempChannel.fake = true;
             tempChannel.name = channelName;
-            tempChannel.display_name = utils.getDisplayName(teammate);
+            tempChannel.display_name = teammate.username;
+            tempChannel.teammate_username = teammate.username;
             tempChannel.status = UserStore.getStatus(teammate.id);
             tempChannel.last_post_at = 0;
             tempChannel.total_msg_count = 0;
@@ -277,7 +278,6 @@ module.exports = React.createClass({
             var lastUnreadElement = $(this.refs[this.lastUnreadChannel].getDOMNode());
 
             if (lastUnreadElement.position().top > container.height()) {
-                $(this.refs.bottomUnreadIndicator.getDOMNode()).css('bottom', '0');
                 $(this.refs.bottomUnreadIndicator.getDOMNode()).css('display', 'initial');
             } else {
                 $(this.refs.bottomUnreadIndicator.getDOMNode()).css('display', 'none');
