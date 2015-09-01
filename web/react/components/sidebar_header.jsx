@@ -86,8 +86,9 @@ var NavbarDropdown = React.createClass({
             });
         }
         if (isAdmin) {
-          teams.push(<li key='newTeam_li'><a key='newTeam_a' href={utils.getWindowLocationOrigin() + '/signup_team' }>Create a New Team</a></li>);
+            teams.push(<li key='newTeam_li'><a key='newTeam_a' target="_blank" href={utils.getWindowLocationOrigin() + '/signup_team' }>Create a New Team</a></li>);
         }
+
         return (
             <ul className='nav navbar-nav navbar-right'>
                 <li ref='dropdown' className='dropdown'>
